@@ -19,12 +19,12 @@ def isSymmetrical(linia: list[int]) -> bool:
     return linia[::-1] == linia
 
 def ex6_2():
-    niesymetryczne_linie = 0
+    nonSymmetrical = 0
     for line in imageData:
         if not isSymmetrical(line):
-            niesymetryczne_linie += 1
+            nonSymmetrical += 1
 
-    return niesymetryczne_linie
+    return nonSymmetrical
 
 # print(f"Aby obraz byl symetryczny trzeba usunac {ex6_2()} linijek")
 
