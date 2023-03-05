@@ -14,7 +14,6 @@ def ex6_1() -> tuple[int, int]:
 
     return lightest, darkest
 
-# print(f"Najjasniejszy i najciemniejszy piksel: {ex6_1()}")
 
 def isSymmetrical(linia: list[int]) -> bool:
     return linia[::-1] == linia
@@ -28,7 +27,6 @@ def ex6_2() -> int:
 
     return nonSymmetrical
 
-# print(f"Aby obraz byl symetryczny trzeba usunac {ex6_2()} linijek")
 
 def getNeighbours(x: int, y: int) -> bool:
     #jestem bardzo dumny z tego rozwiazania, jest calkiem szybkie
@@ -61,4 +59,27 @@ def ex6_3() -> int:
 
     return contrasting
 
-print(f"Liczba kontrastujacych pikseli: {ex6_3()}")
+
+def ex6_4():
+    #Podaj długość najdłuższej linii pionowej złożonej z pikseli tej samej jasności.
+    consecutive = -1
+
+    for x in range(320):
+        currentConsecutives = 0
+        lastvalue = -1
+        for y in range(200):
+            value = imageData[y][x]
+            if value == lastvalue:
+                currentConsecutives += 1
+            else:
+                consecutive = max(currentConsecutives, consecutive)
+                currentConsecutives = 1
+
+            lastvalue = value
+
+    return consecutive
+
+# print(f"Najjasniejszy i najciemniejszy piksel: {ex6_1()}")
+# print(f"Aby obraz byl symetryczny trzeba usunac {ex6_2()} linijek")
+# print(f"Liczba kontrastujacych pikseli: {ex6_3()}")
+# print(f"Najdluzsza linia pionowa: {ex6_4()}")
