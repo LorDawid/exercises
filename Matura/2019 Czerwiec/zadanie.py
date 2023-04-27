@@ -31,9 +31,10 @@ def sumNumberElements(number: int) -> int:
     return sumNumberElements(total)
 
 def ex_4_3():
-    #zwraca dlugosc listy liczb ktore od tylu maja sume == 1
+    #zwraca dlugosc listy liczb ktore od tylu maja sume = 1
     return len([x for x in primes if sumNumberElements(int(str(x)[::-1])) == 1])
 
-print(ex_4_1())
-print(ex_4_2())
-print(ex_4_3())
+print(ex_4_1()) #zadanie 1
+print(ex_4_2()) #zadanie 2
+print(ex_4_3()) #zadanie 3
+#czas wykonanie: 20 minut
