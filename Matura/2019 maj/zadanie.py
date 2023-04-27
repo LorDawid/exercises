@@ -72,19 +72,22 @@ class Dzielniki:
         return True
 
     def __str__(self) -> str:
-        return f"Pierwsza liczba: {self.numbers[0]}, dlugosc: {len(self.numbers)}, nwd: {self.nwd}"
+        return f"Pierwsza liczba: {self.numbers[0]}, dlugosc: {len(self.numbers)-1}, nwd: {self.nwd}"
 
 def ex_4_3():
-    #JESZCZE NIE DZIALA
-
     nums = []
 
+    #kalkulacja dzielnikow
     temp = Dzielniki(data[0])
     for number in range(len(data)):
         if not temp.addNumber(data[number]):
             nums.append(temp)
-            temp = Dzielniki(data[number+1])
+            try:
+                temp = Dzielniki(data[number+1])
+            except IndexError:
+                break
 
+    #wybieranie najwyzszej liczby
     longestList = -1
     longestVal = None
     for number in nums:
