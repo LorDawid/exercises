@@ -10,16 +10,13 @@ def ex_4_1():
     return finalWord
 
 def ex_4_2():
-    uniqueLetters = {}
+    longestWord = ("", -1)
     for word in words:
-        letters = set()
-        for letter in word:
-            letters.add(letter)
-        uniqueLetters[word] = len(letters)
+        uniqueLetters = len(set(word))
+        if uniqueLetters > longestWord[1]:
+            longestWord = (word, uniqueLetters)
 
-    sortedLetters = sorted(uniqueLetters.items(), key = lambda item: item[1])
-
-    return sortedLetters[-1]
+    return longestWord
 
 def ex_4_3():
     letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -40,6 +37,18 @@ def ex_4_3():
 
     return validWords
 
-print(ex_4_1()) #zadanie 1
-print(ex_4_2()) #zadanie 2
-print(ex_4_3()) #zadanie 3
+ex1 = ex_4_1() #zadanie 1
+ex2 = "\n".join(str(x) for x in ex_4_2()) #zadanie 2
+ex3 = "\n".join(ex_4_3()) #zadanie 3
+
+with open("wyniki41.txt", "w") as file:
+    file.write(f"""
+Zad1:
+{ex1}
+
+Zad2:
+{ex2}
+
+Zad3:
+{ex3}
+""")
