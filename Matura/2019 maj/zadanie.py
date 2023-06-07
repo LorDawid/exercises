@@ -7,7 +7,7 @@ def ex_4_1():
     result = 0
 
     for number in data:
-        power = math.log(number, 3)
+        power = round(math.log(number, 3),9)
         if power % 1 == 0: result += 1
 
     return result
@@ -17,10 +17,6 @@ def ex_4_2():
 
     for number in data:
         factorialSum = 0
-
-        #korzystajac z wbudowanej biblioteki math
-        # for digit in str(number):
-            # factorialSum += math.factorial(int(digit))
 
         #korzystajac ze zwyklego algorytmu
         for digit in str(number):
@@ -97,6 +93,19 @@ def ex_4_3():
 
     return longestVal
 
-print(ex_4_1()) #zadanie1
-print(ex_4_2()) #zadanie2
-print(ex_4_3()) #zadanie3
+ex1 = ex_4_1() #zadanie1
+ex2 = "\n".join(str(x) for x in ex_4_2()) #zadanie2
+ex3 = ex_4_3() #zadanie3
+
+with open("wyniki1.txt", "w") as file:
+    file.write(
+f"""
+Zad1:
+{ex1}
+
+Zad2:
+{ex2}
+
+Zad3:
+{ex3}
+""")
