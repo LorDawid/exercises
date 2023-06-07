@@ -44,11 +44,11 @@ def ex_4_3():
     results = []
 
     for index, numbers in enumerate(zip(data1, data2)):
-        digits1 = set(x for x in numbers[0])
-        digits2 = set(x for x in numbers[1])
+        digits1 = set(numbers[0])
+        digits2 = set(numbers[1])
         
         if digits1 == digits2:
-            results.append(index)
+            results.append(index + 1)
 
     return results
 
@@ -56,53 +56,52 @@ def ex_4_4():
     result = []
 
     for numbers1, numbers2 in zip(data1, data2):
-
-        sorted1 = sorted(numbers1)
-        sorted2 = sorted(numbers2)
-
         data3 = []
 
         while True:
-            if len(sorted1) == 0:
-                data3 += sorted2
+            if len(numbers1) == 0:
+                data3 += numbers2
                 break
 
-            if len(sorted2) == 0:
-                data3 += sorted1
+            if len(numbers2) == 0:
+                data3 += numbers1
                 break
 
-            val1 = sorted1[0]
-            val2 = sorted2[0]
+            val1 = numbers1[0]
+            val2 = numbers2[0]
 
             #c2 jest wiekszy
             if val1 < val2:
                 data3.append(val1)
-                sorted1.pop(0)
+                numbers1.pop(0)
 
             #c1 jest wiekszy
             if val2 <= val1:
                 data3.append(val2)
-                sorted2.pop(0)
+                numbers2.pop(0)
 
         result.append(data3)
 
     return result
 
-def ex_4_4_inaczej():
-    #w inny szybszy sposob ale zakladam ze jest niezgodny z poleceniem zadania
-    #bo po prostu laczy dwie listy i sortuje wynik
+ex1 = ex_4_1()
+ex2 = ex_4_2()
+ex3 = ex_4_3()
+ex4 = "\n".join(", ".join(str(y) for y in x) for x in ex_4_4())
 
-    result = []
-    for numbers1, numbers2 in zip(data1, data2):
-        combined = numbers1+numbers2
-        result.append(sorted(combined))
+with open("wyniki1.txt", "w") as file:
+    file.write(
+f"""
+Zad1:
+{ex1}
 
-    return result
+Zad2:
+{ex2}
 
+Zad3:
+{ex3[0]}
+{len(ex3)}
 
-print(ex_4_1()) #zadanie 1
-print(ex_4_2()) #zadanie 2
-print(ex_4_3(), len(ex_4_3())) #UWAGA: pokazuja sie wiersze o 1 mniejsze ze wzgledu na indeksowanie - zeby to zmienic wystarczy zamienic linijke na: print([x+1 for x in ex_4_3()], len(ex_4_3()))
-print(ex_4_4()) #zadanie 4
-# print(ex_4_4_inaczej()) #zadanie 4 zrobione inaczej, ale zakladam ze jest to nie do konca zgodne z poleceniem bo wykorzystuje inny algorytm
-
+Zad4:
+{ex4}
+""")
